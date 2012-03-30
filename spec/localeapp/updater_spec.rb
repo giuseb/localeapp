@@ -35,33 +35,33 @@ describe Localeapp::Updater, ".update(data)" do
       'locales' => %w{en es}
     })
 
-    if defined? Psych
-      if Psych::VERSION == '1.0.0'
-        File.read(File.join(@yml_dir, 'en.yml')).should == <<-EN
-en:
-  foo:
-    monkey: hello
-    night: the night
-  space: !!null 
-  blank: ''
-  tilde: !!null 
-  scalar1: !!null 
-  scalar2: !!null 
-EN
-      else
-        File.read(File.join(@yml_dir, 'en.yml')).should == <<-EN
-en:
-  foo:
-    monkey: hello
-    night: the night
-  space: 
-  blank: ''
-  tilde: 
-  scalar1: 
-  scalar2: 
-EN
-      end
-    else
+#     if defined? Psych
+#       if Psych::VERSION == '1.0.0'
+#         File.read(File.join(@yml_dir, 'en.yml')).should == <<-EN
+# en:
+#   foo:
+#     monkey: hello
+#     night: the night
+#   space: !!null 
+#   blank: ''
+#   tilde: !!null 
+#   scalar1: !!null 
+#   scalar2: !!null 
+# EN
+#       else
+#         File.read(File.join(@yml_dir, 'en.yml')).should == <<-EN
+# en:
+#   foo:
+#     monkey: hello
+#     night: the night
+#   space: 
+#   blank: ''
+#   tilde: 
+#   scalar1: 
+#   scalar2: 
+# EN
+#       end
+#     else
       File.read(File.join(@yml_dir, 'en.yml')).should == <<-EN
 en: 
   blank: ""
@@ -73,7 +73,7 @@ en:
   space: ~
   tilde: ~
 EN
-    end
+    # end
   end
 
   it "deletes keys in the yml files when updates are empty" do
@@ -86,19 +86,19 @@ EN
       ],
       'locales' => %w{es}
     })
-    if defined? Psych
-      File.read(File.join(@yml_dir, 'es.yml')).should == <<-ES
-es:
-  foo:
-    monkey: Mono
-ES
-    else
+#     if defined? Psych
+#       File.read(File.join(@yml_dir, 'es.yml')).should == <<-ES
+# es:
+#   foo:
+#     monkey: Mono
+# ES
+#     else
       File.read(File.join(@yml_dir, 'es.yml')).should == <<-ES
 es: 
   foo: 
     monkey: Mono
 ES
-    end
+    # end
   end
 
   it "creates a new yml file if an unknown locale is passed" do
@@ -108,17 +108,17 @@ ES
       },
       'locales' => ['ja']
     })
-    if defined? Psych
-      File.read(File.join(@yml_dir, 'ja.yml')).should == <<-JA
-ja:
-  foo: bar
-JA
-    else
+#     if defined? Psych
+#       File.read(File.join(@yml_dir, 'ja.yml')).should == <<-JA
+# ja:
+#   foo: bar
+# JA
+#     else
       File.read(File.join(@yml_dir, 'ja.yml')).should == <<-JA
 ja: 
   foo: bar
 JA
-    end
+    # end
   end
 
   it "doesn't create a new yml file if an unknown locale is passed but it has no translations" do

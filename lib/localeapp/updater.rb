@@ -34,11 +34,11 @@ module Localeapp
     private
 
     def generate_yaml(translations)
-      if defined? Psych
-        Psych.dump(translations)[4..-1]
-      else
+      # if defined? Psych
+      #   Psych.dump(translations)[4..-1]
+      # else
         translations.ya2yaml[5..-1]
-      end
+      # end
     end
 
     def remove_flattened_key!(hash, locale, key)

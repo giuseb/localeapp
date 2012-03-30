@@ -111,11 +111,11 @@ module Localeapp
     end
 
     def load_yaml(contents)
-      if defined? Psych
-        Psych.load(contents)
-      else
+      # if defined? Psych
+      #   Psych.load(contents)
+      # else
         normalize_results(YAML.load(contents))
-      end
+      # end
     end
 
     def load_yaml_file(filename)
